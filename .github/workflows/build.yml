@@ -44,9 +44,6 @@ jobs:
             cmake ninja-build nasm pkg-config \
             gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross
 
-      - name: Run FoundationDB setup
-        run: bash ./bash/foundationDB.sh
-
       - name: Cache Rust build
         uses: Swatinem/rust-cache@v2
         with:
