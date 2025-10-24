@@ -1,0 +1,26 @@
+[package]
+authors = ["hi@alphaco.cloud"]
+description = "A high-performance, secure, and cross-platform modules optimized for efficiency, scalability, and reliability."
+edition = "2024"
+keywords = ["networking", "web"]
+license = "Apache-2.0"
+name = "redirect"
+readme = "README.md"
+repository = "https://github.com/AlphaCoCloud/redirect"
+version = "0.1.0"
+
+[dependencies]
+sib = { version = "0.0.13", default-features = false, features = ["net-h1-server"] }
+bytes = { version = "1.10.1", default-features = false }
+heapless = { version = "0.9.1", default-features = false }
+mimalloc = { version = "0.1.48", default-features = false, features = ["secure"] }
+num_cpus = { version = "1.17.0", default-features = false }
+
+[profile.release]
+opt-level = 3            # Consider "3" for max speed, but "z" gives small size & good cache perf
+lto = true                # Full Link Time Optimization (best performance, slower build)
+codegen-units = 1          # Forces whole-program optimization (slower compile, faster runtime)
+panic = "abort"            # Smaller, faster code; no stack unwinding
+strip = "symbols"          # Remove symbols for smaller binary and possibly faster load
+debug = false              # Don't include debug info
+incremental = false        # Disable incremental compilation in release
